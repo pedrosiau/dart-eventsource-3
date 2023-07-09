@@ -12,7 +12,7 @@ import "src/encoder.dart";
 /// channel.
 /// This method can be passed to the [io.HttpServer.listen] method.
 Function createIoHandler(EventSourcePublisher publisher,
-    {String channel: "", bool gzip: false}) {
+    {String channel = "", bool gzip = false}) {
   void ioHandler(io.HttpRequest request) {
     io.HttpResponse response = request.response;
 

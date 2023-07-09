@@ -27,9 +27,9 @@ class EventSourcePublisher extends Sink<Event> {
   /// If your Event's id properties are not incremental using
   /// [Comparable.compare], set [comparableIds] to false.
   EventSourcePublisher({
-    int cacheCapacity: 0,
-    bool comparableIds: false,
-    bool enableLogging: true,
+    int cacheCapacity = 0,
+    bool comparableIds = false,
+    bool enableLogging = true,
   }) {
     if (cacheCapacity > 0) {
       _cache = new EventCache(cacheCapacity: cacheCapacity);
@@ -51,7 +51,7 @@ class EventSourcePublisher extends Sink<Event> {
   /// Add a publication to the specified channels.
   /// By default, only adds to the default channel.
   @override
-  void add(Event event, {Iterable<String> channels: const [""]}) {
+  void add(Event event, {Iterable<String> channels = const [""]}) {
     for (String channel in channels) {
       List<ProxySink>? subs = _subsByChannel[channel];
       if (subs == null) {
@@ -70,7 +70,7 @@ class EventSourcePublisher extends Sink<Event> {
   /// All the connections with the subscribers to this channels will be closed.
   /// By default only closes the default channel.
   @override
-  void close({Iterable<String> channels: const [""]}) {
+  void close({Iterable<String> channels = const [""]}) {
     for (String channel in channels) {
       List<ProxySink>? subs = _subsByChannel[channel];
       if (subs == null) {
